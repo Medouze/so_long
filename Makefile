@@ -6,7 +6,7 @@
 #    By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/20 11:31:10 by mlavergn          #+#    #+#              #
-#    Updated: 2024/08/20 12:59:30 by mlavergn         ###   ########.fr        #
+#    Updated: 2024/08/20 15:48:37 by mlavergn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ FLAGS	= -Wall -Werror -Wextra
 MFLAGS	= -L$(MLX_DIR) -lmlx -L$(PRINTF_DIR) -lftprintf -L/usr/lib -lXext -lX11 -lm -lz
 
 SRCS =	$(GNL)get_next_line.c $(GNL)get_next_line_utils.c $(DIR)map.c $(DIR)main.c \
-		$(DIR)utils.c
+		$(DIR)utils.c 
 
 OBJS = $(SRCS:.c=.o)
 
