@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:37:28 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/20 17:43:01 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:29:07 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	parse_map(t_game *game)
 {
     int     fd;
-    int     i;
+    size_t	i;
 
     fd = open(game->argv, O_RDONLY);
     if (fd < 0) 
@@ -30,6 +30,34 @@ void	parse_map(t_game *game)
 	}
 	game->nbr_row = i;
 	close(fd);
+	null_terminate_rows(game);
+}
+
+void	get_positions(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == 'P')
+			{
+				game->player_pos_x = i;
+				game->player_pos_y = j;
+			}
+			if (game->map[i][j] == 'E')
+			{
+				game->exit_pos_x = i;
+				game->exit_pos_y = j;
+			}
+			j++;
+		}
+		i++;
+	}
 }
 
 void	check_mapchars(t_game *game)
@@ -43,7 +71,7 @@ void	check_mapchars(t_game *game)
 		j = 0;
 		while (game->map[i][j])
 		{
-			if (game->map[i][j] != '0' && game->map[i][j] != '1' && game->map[i][j] != 'C' && game->map[i][j] != 'E' && game->map[i][j] != 'P' && game->map[i][j] != '\n')
+			if (game->map[i][j] != '0' && game->map[i][j] != '1' && game->map[i][j] != 'C' && game->map[i][j] != 'E' && game->map[i][j] != 'P')
 				ft_error("Caractere non accepte\n", game);
 			else if (game->map[i][j] == 'P')
 				game->nbr_player += 1;
@@ -56,37 +84,30 @@ void	check_mapchars(t_game *game)
 		i++;
 	}
 }
-// void	check_col_nbr(t_game *game)
-// {
-// 	int	i;
 
-// 	i = 0;
-// 	while (game->map[i])
-// 	{
-// 		j = 0;
-// 		while (game->map[i][j])
-// 		{
-
-// 		}
-// 	}
-// }
-
-void	check_walls(t_game *game)
+void	check_rectangle_walls(t_game *game)
 {
-	int	i;
+	size_t	i;
 
-	i = 0;
-	while (game->map[0][i])
+	i = 1;
+	while (game->map[i])
 	{
-		if (game->map[0][i] != '1' && game->map[0][i] != '\n')
-			ft_error("La map n'est pas entoure de murs\n", game);
+		if (ft_strlen(game->map[i]) != game->row_len)
+			ft_error("Map isn't a rectangle\n", game);
 		i++;
 	}
 	i = 0;
-	while (game->map[game->nbr_row - 1][i])
+	while (i < game->row_len)
 	{
-		if (game->map[game->nbr_row - 1][i] != '1' && game->map[game->nbr_row - 1][i] != '\n')
-			ft_error("La map n'est pas entoure de murs\n", game);
+		if (game->map[0][i] != '1' || game->map[game->nbr_row - 1][i] != '1')
+			ft_error("Map needs to have walls\n", game);
+		i++;
+	}
+	i = 0;
+	while (i < game->nbr_row)
+	{
+		if (game->map[i][0] != '1' || game->map[i][game->row_len - 1] != '1')
+			ft_error("Map needs to have walls\n", game);
 		i++;
 	}
 }
@@ -95,15 +116,13 @@ void	check_map(t_game *game)
 {
 	if (!game->map[0])
 		ft_error("Empty map", game);
-	check_walls(game);
+	check_rectangle_walls(game);
 	check_mapchars(game);
-	if (game->nbr_player > 1)
-		ft_error("Il ne peut y avoir qu'un joueur\n", game);
-	if (game->nbr_player < 1)
-		ft_error("Il doit y avoir minimun un joueur\n", game);
-	if (game->nbr_exit > 1)
-		ft_error("Il ne peut y avoir qu'une sortie\n", game);
-	if (game->nbr_exit < 1)
-		ft_error("Il doit y avoir minimun une sortie\n", game);
+	if (game->nbr_player > 1 || game->nbr_player < 1)
+		ft_error("Needs only 1 player on map\n", game);
+	if (game->nbr_exit > 1 || game->nbr_exit < 1)
+		ft_error("Only one exit needed\n", game);
+	if (game->nbr_collectible < 1)
+		ft_error("Need collectibles on map\n", game);
 }
 

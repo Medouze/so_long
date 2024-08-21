@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:21:11 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/20 17:41:53 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:19:05 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,20 @@ void	parse_arg(t_game *game, char const *argv)
 
 int main(int argc, char const **argv)
 {
-	int		i = 0;
+	// int		i = 0;
 	t_game	game;
+
 	ft_bzero(&game, sizeof(game));
-	
 	if (argc == 2)
 	{
 		parse_arg(&game, argv[1]);
 		init_game(&game);
 		check_map(&game);
-		ft_printf("%d", game.nbr_player);
-		while (game.map[i])
-		{
-			ft_printf("%s", game.map[i]);
-			i++;
-		}
+		// while (game.map[i])
+		// {
+		// 	ft_printf("%s", game.map[i]);
+		// 	i++;
+		// }
 		free_map(&game);
 	}
 	return 0;
