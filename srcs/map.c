@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:37:28 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/21 17:29:07 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/21 21:04:41 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ void	get_positions(t_game *game)
 		{
 			if (game->map[i][j] == 'P')
 			{
-				game->player_pos_x = i;
-				game->player_pos_y = j;
+				game->player_pos_y = i;
+				game->player_pos_x = j;
 			}
 			if (game->map[i][j] == 'E')
 			{
-				game->exit_pos_x = i;
-				game->exit_pos_y = j;
+				game->exit_pos_y = i;
+				game->exit_pos_x = j;
 			}
 			j++;
 		}
@@ -60,7 +60,7 @@ void	get_positions(t_game *game)
 	}
 }
 
-void	check_mapchars(t_game *game)
+void	check_nbr_chars(t_game *game)
 {
 	int	i;
 	int	j;
@@ -83,6 +83,7 @@ void	check_mapchars(t_game *game)
 		}
 		i++;
 	}
+	game->total_obj = game->nbr_collectible + game->nbr_exit;
 }
 
 void	check_rectangle_walls(t_game *game)
@@ -117,12 +118,15 @@ void	check_map(t_game *game)
 	if (!game->map[0])
 		ft_error("Empty map", game);
 	check_rectangle_walls(game);
-	check_mapchars(game);
+	check_nbr_chars(game);
 	if (game->nbr_player > 1 || game->nbr_player < 1)
 		ft_error("Needs only 1 player on map\n", game);
 	if (game->nbr_exit > 1 || game->nbr_exit < 1)
 		ft_error("Only one exit needed\n", game);
 	if (game->nbr_collectible < 1)
 		ft_error("Need collectibles on map\n", game);
+	if(find_path(game->cp_map, game->player_pos_y, game->player_pos_x, game) == -1)
+		ft_error("No path available on map\n", game);
+	ft_printf("MAP OK\n");
 }
 

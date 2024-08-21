@@ -6,7 +6,7 @@
 #    By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/20 11:31:10 by mlavergn          #+#    #+#              #
-#    Updated: 2024/08/20 15:48:37 by mlavergn         ###   ########.fr        #
+#    Updated: 2024/08/21 17:59:17 by mlavergn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,11 @@ MLX_DIR = mlx/
 MLX		= $(MLX_DIR)libmlx.a
 PRINTF	= $(PRINTF_DIR)libftprintf.a
 CC		= gcc
-FLAGS	= -Wall -Werror -Wextra
+FLAGS	= -Wall -Werror -Wextra -g -fsanitize=address
 MFLAGS	= -L$(MLX_DIR) -lmlx -L$(PRINTF_DIR) -lftprintf -L/usr/lib -lXext -lX11 -lm -lz
 
 SRCS =	$(GNL)get_next_line.c $(GNL)get_next_line_utils.c $(DIR)map.c $(DIR)main.c \
-		$(DIR)utils.c 
+		$(DIR)utils.c  $(DIR)map2.c
 
 OBJS = $(SRCS:.c=.o)
 
