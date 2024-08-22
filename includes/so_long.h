@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:38:03 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/22 17:46:56 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/22 22:30:34 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_game
 	int			player_pos_x;
 	int			player_pos_y;
 	int			total_obj;
+	int			total_play;
 	t_image		image;
 	t_window	window;
 }	t_game;
@@ -72,9 +73,10 @@ void	null_terminate_rows(t_game *game);
 void	check_map_format(t_game *game);
 int		find_path(char **map, int y, int x, t_game *game);
 void	cp_map(t_game *game);
-int		close_window(int keycode, t_game *game);
+int		close_window(t_game *game);
 void	init_image(t_game *game);
 void	set_img_map(t_game *game, int i, int j);
 void	ft_put_img_map(t_game *game);
+int		test_keys(int keycode, t_game *game);
 
 #endif

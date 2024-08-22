@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:53:58 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/22 17:43:59 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/22 22:32:34 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,4 @@ void	null_terminate_rows(t_game *game)
 		}
 		i++;
 	}
-}
-
-void	parse_arg(t_game *game, char const *argv)
-{
-	game->argv = malloc(strlen(argv) + 1);
-	if (!game->argv)
-		ft_error("Allocation memoire argv a echoue", game);
-	ft_strlcpy(game->argv, argv, strlen(argv) + 1);
 }

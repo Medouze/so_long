@@ -6,11 +6,36 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:42:54 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/22 17:38:16 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/22 22:23:12 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+void	parse_arg(t_game *game, char const *argv)
+{
+	char	*str;
+	char	*extension;
+
+	extension = malloc(sizeof(char) * 5);
+	if (!extension)
+		ft_error("Allocation failed\n", game);
+	str = ft_strchr(argv, '.');
+	ft_strlcpy(extension, ".ber", 5);
+	if (strcmp(str, extension) == 0)
+	{
+		game->argv = malloc(strlen(argv) + 1);
+		if (!game->argv)
+			ft_error("Allocation memoire argv a echoue", game);
+		ft_strlcpy(game->argv, argv, strlen(argv) + 1);
+		free(extension);
+	}
+	else
+	{
+		ft_error("Wrong map extension\n", game);
+		free(extension);
+	}
+}
 
 void	get_nbr_row(t_game *game)
 {
