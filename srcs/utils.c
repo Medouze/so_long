@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:53:58 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/22 16:51:01 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:43:59 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	init_game(t_game *game)
 	game->window.mlx = mlx_init();
 	if (!game->window.mlx)
 		ft_error("Allocation failed\n", game);
-	game->window.mlx_window = mlx_new_window(game->window.mlx, game->row_len * 32, game->nbr_row * 32, "My game");
+	game->window.mlx_window = mlx_new_window(game->window.mlx,
+			game->row_len * 32, game->nbr_row * 32, "My game");
 	if (!game->window.mlx_window)
 		ft_error("Allocation failed\n", game);
 	init_image(game);

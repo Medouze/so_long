@@ -6,12 +6,11 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:42:54 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/22 16:55:26 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:38:16 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
 
 void	get_nbr_row(t_game *game)
 {

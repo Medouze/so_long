@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:38:03 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/22 17:19:51 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:46:56 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_image
 	char	*wall;
 	char	*hero;
 	char	*coin;
-	char	*background;
+	char	*back;
 	char	*exit;
 	int		image_width;
 	int		image_height;

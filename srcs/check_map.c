@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:37:28 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/22 16:56:41 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:38:09 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,3 @@ void	check_map(t_game *game)
 		ft_error("No path available on map\n", game);
 	ft_printf("MAP OK\n");
 }
-
-

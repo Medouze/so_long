@@ -6,7 +6,7 @@
 #    By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/20 11:31:10 by mlavergn          #+#    #+#              #
-#    Updated: 2024/08/22 17:18:52 by mlavergn         ###   ########.fr        #
+#    Updated: 2024/08/22 17:27:55 by mlavergn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
-	make fclean -C $(MLX_DIR)
+	make clean -C $(MLX_DIR)
 	make fclean -C $(PRINTF_DIR)
 
 re: fclean all
