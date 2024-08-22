@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 19:29:18 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/11 08:16:18 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/21 22:10:22 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,15 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-size_t	ft_strlen(const char *s)
+size_t ft_strlen(const char *s)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+    size_t len = 0;
+    if (s != NULL)
+    {
+        while (s[len] != '\0')
+            len++;
+    }
+    return len;
 }
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)

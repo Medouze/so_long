@@ -6,7 +6,7 @@
 #    By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/20 11:31:10 by mlavergn          #+#    #+#              #
-#    Updated: 2024/08/21 17:59:17 by mlavergn         ###   ########.fr        #
+#    Updated: 2024/08/22 16:55:42 by mlavergn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ CC		= gcc
 FLAGS	= -Wall -Werror -Wextra -g -fsanitize=address
 MFLAGS	= -L$(MLX_DIR) -lmlx -L$(PRINTF_DIR) -lftprintf -L/usr/lib -lXext -lX11 -lm -lz
 
-SRCS =	$(GNL)get_next_line.c $(GNL)get_next_line_utils.c $(DIR)map.c $(DIR)main.c \
-		$(DIR)utils.c  $(DIR)map2.c
+SRCS =	$(GNL)get_next_line.c $(GNL)get_next_line_utils.c $(DIR)parsing.c $(DIR)main.c \
+		$(DIR)utils.c  $(DIR)check_map.c $(DIR)test.c $(DIR)image.c
 
 OBJS = $(SRCS:.c=.o)
 

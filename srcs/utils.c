@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:53:58 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/21 21:03:08 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/22 16:51:01 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ void	free_game(t_game *game)
 	int	i;
 
 	i = 0;
-	while (game->map[i]) 
+	while (game->map[i])
 	{
 		free(game->map[i]);
 		i++;
 	}
 	free(game->map);
 	i = 0;
-	while (game->cp_map[i]) 
+	while (game->cp_map[i])
 	{
 		free(game->cp_map[i]);
 		i++;
@@ -44,10 +44,17 @@ void	ft_error(char *error_msg, t_game *game)
 
 void	init_game(t_game *game)
 {
+	get_nbr_row(game);
 	parse_map(game);
 	cp_map(game);
 	game->row_len = ft_strlen(game->map[0]);
-	get_positions(game);
+	game->window.mlx = mlx_init();
+	if (!game->window.mlx)
+		ft_error("Allocation failed\n", game);
+	game->window.mlx_window = mlx_new_window(game->window.mlx, game->row_len * 32, game->nbr_row * 32, "My game");
+	if (!game->window.mlx_window)
+		ft_error("Allocation failed\n", game);
+	init_image(game);
 }
 
 void	null_terminate_rows(t_game *game)
@@ -64,10 +71,18 @@ void	null_terminate_rows(t_game *game)
 			if (game->map[i][j] == '\n')
 			{
 				game->map[i][j] = '\0';
-				break;
+				break ;
 			}
 			j++;
 		}
 		i++;
 	}
+}
+
+void	parse_arg(t_game *game, char const *argv)
+{
+	game->argv = malloc(strlen(argv) + 1);
+	if (!game->argv)
+		ft_error("Allocation memoire argv a echoue", game);
+	ft_strlcpy(game->argv, argv, strlen(argv) + 1);
 }
