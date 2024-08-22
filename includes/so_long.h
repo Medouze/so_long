@@ -6,19 +6,17 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:38:03 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/22 17:14:50 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:17:36 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../mlx/mlx.h"
+# include "../my_mlx/mlx.h"
 # include "../gnl/get_next_line.h"
 # include "../printf/ft_printf.h"
 # include <fcntl.h>
-
-# define MAX_LINE 1000
 
 typedef enum e_direction
 {

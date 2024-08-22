@@ -6,7 +6,7 @@
 #    By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/20 11:31:10 by mlavergn          #+#    #+#              #
-#    Updated: 2024/08/22 17:15:15 by mlavergn         ###   ########.fr        #
+#    Updated: 2024/08/22 17:17:04 by mlavergn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= so_long
 DIR		= srcs/
 GNL		= gnl/
 PRINTF_DIR = printf/
-MLX_DIR = mlx/
+MLX_DIR = my_mlx/
 MLX		= $(MLX_DIR)libmlx.a
 PRINTF	= $(PRINTF_DIR)libftprintf.a
 CC		= gcc
