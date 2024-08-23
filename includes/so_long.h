@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:38:03 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/23 23:14:05 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/24 01:01:10 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,7 @@ void	move_down(t_game *game);
 void	move_right(t_game *game);
 void	move_left(t_game *game);
 void	init_map_obj(char c, int y, int x, t_game *game);
+void    draw_text(t_game *game);
+char	*ft_itoa(int n);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:21:11 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/23 23:00:49 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/24 00:37:41 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ int	main(int argc, char const **argv)
 		mlx_key_hook(game.window.mlx_window, &parse_key, &game);
 		mlx_loop(game.window.mlx);
 	}
+	else
+		ft_error("Only one argument needed\n", &game);
 	return (0);
 }

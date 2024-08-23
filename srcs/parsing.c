@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:42:54 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/23 23:43:49 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/24 00:43:34 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	parse_arg(t_game *game, char const *argv)
 	if (!extension)
 		ft_error("Allocation failed\n", game);
 	str = ft_strchr(argv, '.');
+	if (!str)
+		ft_error("Wrong map extension\n", game);
 	ft_strlcpy(extension, ".ber", 5);
 	if (strcmp(str, extension) == 0)
 	{
@@ -100,4 +102,12 @@ void	cp_map(t_game *game)
 			game->cp_map[i][j] = game->map[i][j];
 		game->cp_map[i][j] = '\0';
 	}
+}
+
+void	ft_error(char *error_msg, t_game *game)
+{
+	ft_printf("Error\n");
+	ft_printf("%s", error_msg);
+	free_game(game);
+	exit(EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 00:58:36 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/23 23:15:15 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/24 00:37:57 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	set_img_map(t_game *game, int i, int j)
 	if (game->map[i][j] == 'E')
 		mlx_put_image_to_window(game->window.mlx,
 			game->window.mlx_window, game->img.exit, j * 32, i * 32);
+	draw_text(game);
 }
 
 void	ft_put_img_map(t_game *game)
