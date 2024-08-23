@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:38:03 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/23 00:40:39 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/23 23:14:05 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "../mlx/mlx.h"
 # include "../gnl/get_next_line.h"
 # include "../ft_printf/ft_printf.h"
-# include <fcntl.h>
 
 typedef enum e_direction
 {
@@ -26,16 +25,16 @@ typedef enum e_direction
 	LEFT
 }	t_direction;
 
-typedef struct s_image
+typedef struct s_img
 {
 	char	*wall;
 	char	*hero;
 	char	*coin;
 	char	*back;
 	char	*exit;
-	int		image_width;
-	int		image_height;
-}	t_image;
+	int		img_width;
+	int		img_height;
+}	t_img;
 
 typedef struct s_window
 {
@@ -60,7 +59,7 @@ typedef struct s_game
 	int			total_obj;
 	int			total_play;
 	int			finished;
-	t_image		image;
+	t_img		img;
 	t_window	window;
 }	t_game;
 
