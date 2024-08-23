@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:38:03 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/22 22:30:34 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/23 00:40:39 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,11 @@ typedef struct s_game
 	int			nbr_collectible;
 	int			player_pos_x;
 	int			player_pos_y;
+	int			exit_pos_x;
+	int			exit_pos_y;
 	int			total_obj;
 	int			total_play;
+	int			finished;
 	t_image		image;
 	t_window	window;
 }	t_game;
@@ -64,7 +67,6 @@ typedef struct s_game
 void	parse_map(t_game *game);
 void	get_nbr_row(t_game *game);
 void	free_game(t_game *game);
-void	check_nbr_chars(t_game *game);
 void	ft_error(char *error_msg, t_game *game);
 void	init_game(t_game *game);
 void	check_map(t_game *game);
@@ -77,6 +79,11 @@ int		close_window(t_game *game);
 void	init_image(t_game *game);
 void	set_img_map(t_game *game, int i, int j);
 void	ft_put_img_map(t_game *game);
-int		test_keys(int keycode, t_game *game);
+int		parse_key(int keycode, t_game *game);
+void	move_up(t_game *game);
+void	move_down(t_game *game);
+void	move_right(t_game *game);
+void	move_left(t_game *game);
+void	init_map_obj(char c, int y, int x, t_game *game);
 
 #endif
