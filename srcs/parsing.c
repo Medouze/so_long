@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:42:54 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/22 22:23:12 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/23 23:43:49 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	parse_arg(t_game *game, char const *argv)
 	}
 	else
 	{
-		ft_error("Wrong map extension\n", game);
 		free(extension);
+		ft_error("Wrong map extension\n", game);
 	}
 }
 
