@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:37:28 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/23 23:08:19 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/23 23:26:36 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,21 +57,21 @@ void	check_map_format(t_game *game)
 	while (game->map[i])
 	{
 		if (ft_strlen(game->map[i]) != game->row_len)
-			ft_error("Map isn't a rectangle\n", game);
+			ft_error("Wrong map format\n", game);
 		i++;
 	}
 	i = 0;
 	while (i < game->row_len)
 	{
 		if (game->map[0][i] != '1' || game->map[game->nbr_row - 1][i] != '1')
-			ft_error("Map needs to have walls\n", game);
+			ft_error("Map needs to be surrounded by walls\n", game);
 		i++;
 	}
 	i = 0;
 	while (i < game->nbr_row)
 	{
 		if (game->map[i][0] != '1' || game->map[i][game->row_len - 1] != '1')
-			ft_error("Map needs to have walls\n", game);
+			ft_error("Map needs to be surrounded by walls\n", game);
 		i++;
 	}
 }
