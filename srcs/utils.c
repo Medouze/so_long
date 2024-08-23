@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:53:58 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/22 22:32:34 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/22 23:03:46 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,25 @@ void	free_game(t_game *game)
 	int	i;
 
 	i = 0;
-	while (game->map[i])
+	if (game->map)
 	{
-		free(game->map[i]);
-		i++;
+		while (game->map[i])
+		{
+			free(game->map[i]);
+			i++;
+		}
+		free(game->map);
 	}
-	free(game->map);
 	i = 0;
-	while (game->cp_map[i])
+	if (game->cp_map)
 	{
-		free(game->cp_map[i]);
-		i++;
+		while (game->cp_map[i])
+		{
+			free(game->cp_map[i]);
+			i++;
+		}
+		free(game->cp_map);
 	}
-	free(game->cp_map);
 	if (game->argv)
 		free(game->argv);
 }

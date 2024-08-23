@@ -6,11 +6,30 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:37:28 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/22 17:38:09 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/23 00:17:05 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+void	init_map_obj(char c, int y, int x, t_game *game)
+{
+	if (c == 'P')
+	{
+		game->nbr_player += 1;
+		game->player_pos_y = y;
+		game->player_pos_x = x;
+	}
+	else if (c == 'E')
+	{
+		game->nbr_exit += 1;
+		game->exit_pos_y = y;
+		game->exit_pos_x = x;
+	}
+	else if (c == 'C')
+		game->nbr_collectible += 1;
+	game->total_obj = game->nbr_collectible + game->nbr_exit;
+}
 
 void	check_nbr_chars(t_game *game)
 {
@@ -25,19 +44,9 @@ void	check_nbr_chars(t_game *game)
 		{
 			if (!ft_strchr("01CEP", game->map[i][j]))
 				ft_error("Non authorized character on map\n", game);
-			else if (game->map[i][j] == 'P')
-			{
-				game->nbr_player += 1;
-				game->player_pos_y = i;
-				game->player_pos_x = j;
-			}
-			else if (game->map[i][j] == 'E')
-				game->nbr_exit += 1;
-			else if (game->map[i][j] == 'C')
-				game->nbr_collectible += 1;
+			init_map_obj(game->map[i][j], i, j, game);
 		}
 	}
-	game->total_obj = game->nbr_collectible + game->nbr_exit;
 }
 
 void	check_map_format(t_game *game)
