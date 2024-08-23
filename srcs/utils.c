@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:53:58 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/24 00:43:57 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/24 01:12:17 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	null_terminate_rows(t_game *game)
 		i++;
 	}
 }
+
 static int	nbr_len(long n)
 {
 	size_t	len;
