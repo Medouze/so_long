@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:42:54 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/24 00:43:34 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/25 00:16:20 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,19 @@
 void	parse_arg(t_game *game, char const *argv)
 {
 	char	*str;
-	char	*extension;
+	char	*path;
 
-	extension = malloc(sizeof(char) * 5);
-	if (!extension)
-		ft_error("Allocation failed\n", game);
+	path = ft_strchr(argv, '/');
+	if (!path || ft_strlen(path) == 5)
+		ft_error("Wrong map extension\n", game);
 	str = ft_strchr(argv, '.');
-	if (!str)
+	if (!str || ft_strncmp(str, ".ber", 5) != 0)
 		ft_error("Wrong map extension\n", game);
-	ft_strlcpy(extension, ".ber", 5);
-	if (strcmp(str, extension) == 0)
-	{
-		game->argv = malloc(strlen(argv) + 1);
-		if (!game->argv)
-			ft_error("Allocation memoire argv a echoue", game);
-		ft_strlcpy(game->argv, argv, strlen(argv) + 1);
-		free(extension);
-	}
-	else
-	{
-		free(extension);
-		ft_error("Wrong map extension\n", game);
-	}
+	game->argv = malloc(strlen(argv) + 1);
+	if (strcmp(argv - 5, "/") == 0)
+	if (!game->argv)
+		ft_error("Allocation failed\n", game);
+	ft_strlcpy(game->argv, argv, strlen(argv) + 1);
 }
 
 void	get_nbr_row(t_game *game)
@@ -103,6 +94,7 @@ void	cp_map(t_game *game)
 		game->cp_map[i][j] = '\0';
 	}
 }
+
 
 void	ft_error(char *error_msg, t_game *game)
 {

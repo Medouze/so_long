@@ -6,7 +6,7 @@
 #    By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/20 11:31:10 by mlavergn          #+#    #+#              #
-#    Updated: 2024/08/23 23:04:22 by mlavergn         ###   ########.fr        #
+#    Updated: 2024/08/24 23:04:58 by mlavergn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ MFLAGS	= -L$(MLX_DIR) -lmlx -L$(PRINTF_DIR) -lftprintf -L/usr/lib -lXext -lX11 -
 
 SRCS =	$(GNL)get_next_line.c $(GNL)get_next_line_utils.c $(DIR)parsing.c $(DIR)main.c \
 		$(DIR)utils.c  $(DIR)check_map.c $(DIR)mlx_utils.c $(DIR)image.c \
-		$(DIR)directions.c
+		$(DIR)directions.c $(DIR)check_map2.c
 
 OBJS = $(SRCS:.c=.o)
 

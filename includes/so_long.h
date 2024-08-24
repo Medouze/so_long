@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:38:03 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/24 18:11:28 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/25 00:16:38 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ typedef struct s_game
 	size_t		nbr_row;
 	size_t		row_len;
 	int			nbr_collectible;
+	int			total_obj;
 	int			player_pos_x;
 	int			player_pos_y;
 	int			exit_pos_x;
 	int			exit_pos_y;
 	int			total_play;
-	int			finished;
 	t_img		img;
 	t_window	window;
 }	t_game;

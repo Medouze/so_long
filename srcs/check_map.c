@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:37:28 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/24 18:16:12 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/25 00:16:54 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,23 +89,24 @@ int	find_path(char **map, int y, int x, t_game *game)
 	if (map[y][x] == 'C')
 		collectibles--;
 	map[y][x] = '9';
-	if (direction[UP] != '1' && direction[UP] != '9' && direction[UP] != 'E')
-		find_path(map, y - 1, x, game);
-	if (direction[DOWN] != '1' && direction[DOWN] != '9' && direction[DOWN] != 'E')
-		find_path(map, y + 1, x, game);
-	if (direction[LEFT] != '1' && direction[LEFT] != '9' && direction[LEFT] != 'E')
-		find_path(map, y, x - 1, game);
-	if (direction[RIGHT] != '1' && direction[RIGHT] != '9' && direction[RIGHT] != 'E')
-		find_path(map, y, x + 1, game);
+	if (collectibles != 0)
+	{
+		if (direction[UP] != '1' && direction[UP] != '9' && direction[UP] != 'E')
+			find_path(map, y - 1, x, game);
+		if (direction[DOWN] != '1' && direction[DOWN] != '9' && direction[DOWN] != 'E')
+			find_path(map, y + 1, x, game);
+		if (direction[LEFT] != '1' && direction[LEFT] != '9' && direction[LEFT] != 'E')
+			find_path(map, y, x - 1, game);
+		if (direction[RIGHT] != '1' && direction[RIGHT] != '9' && direction[RIGHT] != 'E')
+			find_path(map, y, x + 1, game);
+	}
 	if (collectibles == 0)
-		return (1);
+		return 1;
 	return (0);
 }
 
 void	check_map(t_game *game)
 {
-	if (!game->map[0])
-		ft_error("Empty map", game);
 	check_map_format(game);
 	check_nbr_chars(game);
 	if (game->nbr_player > 1 || game->nbr_player < 1)
