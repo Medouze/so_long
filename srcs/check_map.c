@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:37:28 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/24 17:56:29 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/24 18:16:12 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	find_path(char **map, int y, int x, t_game *game)
 {
 	char		direction[4];
 	static int	collectibles;
-
+	
 	if (y == game->player_pos_y && x == game->player_pos_x)
 		collectibles = game->nbr_collectible;
 	direction[UP] = map[y - 1][x];
@@ -91,11 +91,11 @@ int	find_path(char **map, int y, int x, t_game *game)
 	map[y][x] = '9';
 	if (direction[UP] != '1' && direction[UP] != '9' && direction[UP] != 'E')
 		find_path(map, y - 1, x, game);
-	if (direction[DOWN] != '1' && direction[DOWN] != '9' && direction[UP] != 'E')
+	if (direction[DOWN] != '1' && direction[DOWN] != '9' && direction[DOWN] != 'E')
 		find_path(map, y + 1, x, game);
-	if (direction[LEFT] != '1' && direction[LEFT] != '9' && direction[UP] != 'E')
+	if (direction[LEFT] != '1' && direction[LEFT] != '9' && direction[LEFT] != 'E')
 		find_path(map, y, x - 1, game);
-	if (direction[RIGHT] != '1' && direction[RIGHT] != '9' && direction[UP] != 'E')
+	if (direction[RIGHT] != '1' && direction[RIGHT] != '9' && direction[RIGHT] != 'E')
 		find_path(map, y, x + 1, game);
 	if (collectibles == 0)
 		return (1);
