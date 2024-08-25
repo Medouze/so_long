@@ -1,8 +1,4 @@
 .DS_Store
 so_long
 *.o
-tester
-Tester_so_long.sh
-maps_err/
-maps_valid/
 *.a

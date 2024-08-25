@@ -6,52 +6,32 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:53:58 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/25 00:17:21 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/25 02:43:03 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	free_game(t_game *game)
+char	**copy_map(t_game *game)
 {
-	int	i;
+	int		i;
+	char	**cp_map;
 
-	if (game == NULL)
-		return ;
-	if (game->map)
+	cp_map = malloc(sizeof(char *) * (game->nbr_row + 1));
+	if (!cp_map)
+		ft_error("Allocation error\n", game);
+	i = -1;
+	while (game->map[++i])
 	{
-		i = -1;
-		while (game->map[++i])
-			free(game->map[i]);
-		free(game->map);
+		cp_map[i] = ft_strdup(game->map[i]);
+		if (!cp_map[i])
+		{
+			free_map(cp_map);
+			ft_error("Allocation failed\n", game);
+		}
 	}
-	if (game->cp_map)
-	{
-		i = -1;
-		while (game->cp_map[++i])
-			free(game->cp_map[i]);
-		free(game->cp_map);
-	}
-	if (game->argv)
-		free(game->argv);
-}
-
-void	init_game(t_game *game)
-{
-	get_nbr_row(game);
-	parse_map(game);
-	if (!game->map[0])
-		ft_error("Map is empty\n", game);
-	cp_map(game);
-	game->row_len = ft_strlen(game->map[0]);
-	game->window.mlx = mlx_init();
-	if (!game->window.mlx)
-		ft_error("Allocation failed\n", game);
-	game->window.mlx_window = mlx_new_window(game->window.mlx,
-			game->row_len * 32, game->nbr_row * 32, "My game");
-	if (!game->window.mlx_window)
-		ft_error("Allocation failed\n", game);
-	init_image(game);
+	cp_map[game->nbr_row] = NULL;
+	return (cp_map);
 }
 
 void	null_terminate_rows(t_game *game)

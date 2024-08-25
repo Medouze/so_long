@@ -6,13 +6,13 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:37:28 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/25 00:16:54 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/25 02:53:58 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	init_map_obj(char c, int y, int x, t_game *game)
+void	check_nbr_obj(char c, int y, int x, t_game *game)
 {
 	if (c == 'P')
 	{
@@ -43,7 +43,7 @@ void	check_nbr_chars(t_game *game)
 		{
 			if (!ft_strchr("01CEP", game->map[i][j]))
 				ft_error("Non authorized character on map\n", game);
-			init_map_obj(game->map[i][j], i, j, game);
+			check_nbr_obj(game->map[i][j], i, j, game);
 		}
 	}
 }
@@ -75,33 +75,32 @@ void	check_map_format(t_game *game)
 	}
 }
 
-int	find_path(char **map, int y, int x, t_game *game)
+int	find_path(int y, int x, t_game *game)
 {
-	char		direction[4];
-	static int	collectibles;
-	
-	if (y == game->player_pos_y && x == game->player_pos_x)
-		collectibles = game->nbr_collectible;
-	direction[UP] = map[y - 1][x];
-	direction[DOWN] = map[y + 1][x];
-	direction[LEFT] = map[y][x - 1];
-	direction[RIGHT] = map[y][x + 1];
-	if (map[y][x] == 'C')
-		collectibles--;
-	map[y][x] = '9';
-	if (collectibles != 0)
+	char	**cp_map;
+	int		collectibles;
+	int		found_exit;
+
+	collectibles = game->nbr_collectible;
+	cp_map = copy_map(game);
+	if (!cp_map)
 	{
-		if (direction[UP] != '1' && direction[UP] != '9' && direction[UP] != 'E')
-			find_path(map, y - 1, x, game);
-		if (direction[DOWN] != '1' && direction[DOWN] != '9' && direction[DOWN] != 'E')
-			find_path(map, y + 1, x, game);
-		if (direction[LEFT] != '1' && direction[LEFT] != '9' && direction[LEFT] != 'E')
-			find_path(map, y, x - 1, game);
-		if (direction[RIGHT] != '1' && direction[RIGHT] != '9' && direction[RIGHT] != 'E')
-			find_path(map, y, x + 1, game);
+		free_map(cp_map);
+		ft_error("Alocation failed\n", game);
 	}
-	if (collectibles == 0)
-		return 1;
+	path_collect(cp_map, y, x, &collectibles);
+	free_map(cp_map);
+	cp_map = NULL;
+	cp_map = copy_map(game);
+	if (!cp_map)
+	{
+		free_map(cp_map);
+		ft_error("Alocation failed\n", game);
+	}
+	found_exit = path_exit(cp_map, y, x);
+	free_map(cp_map);
+	if (collectibles == 0 && found_exit)
+		return (1);
 	return (0);
 }
 
@@ -115,6 +114,6 @@ void	check_map(t_game *game)
 		ft_error("Only one exit needed\n", game);
 	if (game->nbr_collectible < 1)
 		ft_error("Need collectibles on map\n", game);
-	if (!find_path(game->cp_map, game->player_pos_y, game->player_pos_x, game))
+	if (!find_path(game->player_pos_y, game->player_pos_x, game))
 		ft_error("No path available on map\n", game);
 }

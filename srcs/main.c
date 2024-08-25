@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:21:11 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/24 19:47:08 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/25 02:37:30 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	main(int argc, char const **argv)
 	{
 		parse_arg(&game, argv[1]);
 		init_game(&game);
-		check_map(&game);
 		ft_put_img_map(&game);
 		mlx_hook(game.window.mlx_window, 17, 0L, &close_window, &game);
 		mlx_key_hook(game.window.mlx_window, &parse_key, &game);

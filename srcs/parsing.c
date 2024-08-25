@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:42:54 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/25 00:16:20 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/25 02:59:10 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	parse_arg(t_game *game, char const *argv)
 	if (!str || ft_strncmp(str, ".ber", 5) != 0)
 		ft_error("Wrong map extension\n", game);
 	game->argv = malloc(strlen(argv) + 1);
-	if (strcmp(argv - 5, "/") == 0)
 	if (!game->argv)
 		ft_error("Allocation failed\n", game);
 	ft_strlcpy(game->argv, argv, strlen(argv) + 1);
@@ -73,33 +72,20 @@ void	parse_map(t_game *game)
 	null_terminate_rows(game);
 }
 
-void	cp_map(t_game *game)
+void	init_game(t_game *game)
 {
-	int		i;
-	int		j;
-
-	game->cp_map = malloc(sizeof(char *) * (game->nbr_row + 1));
-	if (!game->cp_map)
-		return ;
-	game->cp_map[game->nbr_row] = NULL;
-	i = -1;
-	while (game->map[++i])
-	{
-		j = -1;
-		game->cp_map[i] = malloc(sizeof(char) * (ft_strlen(game->map[i]) + 1));
-		if (!game->cp_map[i])
-			return ;
-		while (game->map[i][++j])
-			game->cp_map[i][j] = game->map[i][j];
-		game->cp_map[i][j] = '\0';
-	}
-}
-
-
-void	ft_error(char *error_msg, t_game *game)
-{
-	ft_printf("Error\n");
-	ft_printf("%s", error_msg);
-	free_game(game);
-	exit(EXIT_FAILURE);
+	get_nbr_row(game);
+	parse_map(game);
+	if (!game->map[0])
+		ft_error("Map is empty\n", game);
+	game->row_len = ft_strlen(game->map[0]);
+	check_map(game);
+	game->window.mlx = mlx_init();
+	if (!game->window.mlx)
+		ft_error("Allocation failed\n", game);
+	game->window.mlx_window = mlx_new_window(game->window.mlx,
+			game->row_len * 32, game->nbr_row * 32, "My game");
+	if (!game->window.mlx_window)
+		ft_error("Allocation failed\n", game);
+	init_image(game);
 }

@@ -6,35 +6,11 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 22:16:54 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/24 01:12:06 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/25 02:50:25 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-void	draw_text(t_game *game)
-{
-	int		color;
-	char	*swords;
-	char	*count_collectibles;
-	size_t	text_len;
-
-	color = 0xFFFFFF;
-	swords = ft_itoa(game->nbr_collectible);
-	text_len = strlen("Collectables left : ") + (strlen(swords) + 1);
-	count_collectibles = malloc(text_len);
-	if (!count_collectibles)
-	{
-		free(swords);
-		return ;
-	}
-	strcpy(count_collectibles, "Collectables left : ");
-	strcat(count_collectibles, swords);
-	mlx_string_put(game->window.mlx,
-		game->window.mlx_window, 10, 20, color, count_collectibles);
-	free(count_collectibles);
-	free(swords);
-}
 
 int	close_window(t_game *game)
 {
