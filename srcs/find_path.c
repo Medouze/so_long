@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 02:56:25 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/25 02:58:41 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/25 13:22:45 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,35 @@ int	path_exit(char **map, int y, int x)
 	if (path_exit(map, y, x - 1))
 		return (1);
 	if (path_exit(map, y, x + 1))
+		return (1);
+	return (0);
+}
+
+int	find_path(int y, int x, t_game *game)
+{
+	char	**cp_map;
+	int		collectibles;
+	int		found_exit;
+
+	collectibles = game->nbr_collectible;
+	cp_map = copy_map(game);
+	if (!cp_map)
+	{
+		free_map(cp_map);
+		ft_error("Alocation failed\n", game);
+	}
+	path_collect(cp_map, y, x, &collectibles);
+	free_map(cp_map);
+	cp_map = NULL;
+	cp_map = copy_map(game);
+	if (!cp_map)
+	{
+		free_map(cp_map);
+		ft_error("Alocation failed\n", game);
+	}
+	found_exit = path_exit(cp_map, y, x);
+	free_map(cp_map);
+	if (collectibles == 0 && found_exit)
 		return (1);
 	return (0);
 }
