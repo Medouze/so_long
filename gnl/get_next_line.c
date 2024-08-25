@@ -6,11 +6,12 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 19:05:50 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/22 17:34:12 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/25 21:01:08 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "../includes/so_long.h"
 
 void	fill_stash(int fd, char **stash)
 {
@@ -20,7 +21,7 @@ void	fill_stash(int fd, char **stash)
 
 	bytes_read = 1;
 	initialise_stash(stash);
-	while (!(strchr(*stash, '\n')) && bytes_read > 0)
+	while (!(ft_strchr(*stash, '\n')) && bytes_read > 0)
 	{
 		buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 		if (!buf)

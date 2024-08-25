@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 19:02:29 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/22 17:37:30 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/25 21:00:12 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include <stdio.h>
-# include <string.h>
 
 char	*get_next_line(int fd);
 void	fill_stash(int fd, char **stash);

@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 22:16:54 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/25 02:50:25 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/25 20:59:09 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,22 @@
 
 int	close_window(t_game *game)
 {
-	mlx_destroy_image(game->window.mlx, game->img.hero);
-	mlx_destroy_image(game->window.mlx, game->img.coin);
-	mlx_destroy_image(game->window.mlx, game->img.exit);
-	mlx_destroy_image(game->window.mlx, game->img.wall);
-	mlx_destroy_image(game->window.mlx, game->img.back);
-	mlx_destroy_window(game->window.mlx, game->window.mlx_window);
-	mlx_destroy_display(game->window.mlx);
-	free_game(game);
+	if (game->img.hero)
+		mlx_destroy_image(game->window.mlx, game->img.hero);
+	if (game->img.coin)
+		mlx_destroy_image(game->window.mlx, game->img.coin);
+	if (game->img.exit)
+		mlx_destroy_image(game->window.mlx, game->img.exit);
+	if (game->img.wall)
+		mlx_destroy_image(game->window.mlx, game->img.wall);
+	if (game->img.back)
+		mlx_destroy_image(game->window.mlx, game->img.back);
+	if (game->window.mlx_window)
+		mlx_destroy_window(game->window.mlx, game->window.mlx_window);
+	if (game->window.mlx)
+		mlx_destroy_display(game->window.mlx);
+	if (game)
+		free_game(game);
 	exit(0);
 	return (0);
 }

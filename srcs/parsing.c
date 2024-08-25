@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:42:54 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/25 02:59:10 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/08/25 21:01:32 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	parse_arg(t_game *game, char const *argv)
 	str = ft_strchr(argv, '.');
 	if (!str || ft_strncmp(str, ".ber", 5) != 0)
 		ft_error("Wrong map extension\n", game);
-	game->argv = malloc(strlen(argv) + 1);
+	game->argv = malloc(ft_strlen(argv) + 1);
 	if (!game->argv)
 		ft_error("Allocation failed\n", game);
-	ft_strlcpy(game->argv, argv, strlen(argv) + 1);
+	ft_strlcpy(game->argv, argv, ft_strlen(argv) + 1);
 }
 
 void	get_nbr_row(t_game *game)
