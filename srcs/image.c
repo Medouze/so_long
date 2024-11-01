@@ -6,7 +6,7 @@
 /*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 00:58:36 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/25 21:04:54 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/11/01 22:03:17 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,10 @@ void	draw_text(t_game *game)
 		free(swords);
 		return ;
 	}
-	ft_strlcpy(count_collectibles, "Collectables left : ",
-		ft_strlen("Collectables left : "));
-	ft_strlcat(count_collectibles, swords,
-		ft_strlen(count_collectibles) + ft_strlen(swords));
+	ft_strlcpy(count_collectibles, "Collectables left : ", text_len);
+	ft_strlcat(count_collectibles, swords, text_len);
 	mlx_string_put(game->window.mlx,
-		game->window.mlx_window, 10, 20, color, count_collectibles);
+		game->window.mlx_window, 20, 20, color, count_collectibles);
 	free(count_collectibles);
 	free(swords);
 }
