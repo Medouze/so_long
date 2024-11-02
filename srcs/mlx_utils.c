@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
+/*   By: mlavergn <mlavergn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 22:16:54 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/11/01 21:59:14 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/11/02 18:07:07 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ int	close_window(t_game *game)
 		mlx_destroy_image(game->window.mlx, game->img.back);
 	if (game->window.mlx_window)
 		mlx_destroy_window(game->window.mlx, game->window.mlx_window);
-	if (game->window.mlx)
-		mlx_destroy_display(game->window.mlx);
 	if (game)
 		free_game(game);
+	system("leaks so_long");
 	exit(0);
 	return (0);
 }

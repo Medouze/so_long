@@ -3,57 +3,49 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+         #
+#    By: mlavergn <mlavergn@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/20 11:31:10 by mlavergn          #+#    #+#              #
-#    Updated: 2024/08/25 02:37:03 by mlavergn         ###   ########.fr        #
+#    Updated: 2024/11/02 19:22:01 by mlavergn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= so_long
-DIR		= srcs/
-GNL		= gnl/
-PRINTF_DIR = ft_printf/
-MLX_DIR = mlx/
-MLX		= $(MLX_DIR)libmlx.a
-PRINTF	= $(PRINTF_DIR)libftprintf.a
-CC		= gcc
-FLAGS	= -Wall -Werror -Wextra -g -fsanitize=address
-MFLAGS	= -L$(MLX_DIR) -lmlx -L$(PRINTF_DIR) -lftprintf -L/usr/lib -lXext -lX11 -lm -lz
+NAME        = so_long
+DIR         = srcs/
+GNL         = gnl/
+PRINTF_DIR  = ft_printf/
+PRINTF_LIB  = $(PRINTF_DIR)libftprintf.a
+CC          = gcc
+FLAGS       = -Wall -Werror -Wextra
+MFLAGS      = -L/usr/local/lib -lmlx -L$(PRINTF_DIR) -lftprintf -framework OpenGL -framework AppKit
 
-SRCS =	$(GNL)get_next_line.c $(GNL)get_next_line_utils.c $(DIR)parsing.c $(DIR)main.c \
-		$(DIR)utils.c  $(DIR)check_map.c $(DIR)mlx_utils.c $(DIR)image.c \
-		$(DIR)directions.c $(DIR)find_path.c $(DIR)utils2.c
+SRCS =      $(GNL)get_next_line.c $(GNL)get_next_line_utils.c $(DIR)parsing.c $(DIR)main.c \
+            $(DIR)utils.c  $(DIR)check_map.c $(DIR)mlx_utils.c $(DIR)image.c \
+            $(DIR)directions.c $(DIR)find_path.c $(DIR)utils2.c
 
-OBJS = $(SRCS:.c=.o)
+OBJS =      $(SRCS:.c=.o)
 
-all: $(MLX) $(PRINTF) $(NAME)
+all: $(NAME)
 
-$(MLX):
-	make -sC $(MLX_DIR)
+$(PRINTF_LIB):
+	$(MAKE) -C $(PRINTF_DIR)
 
-$(PRINTF):
-	make -C $(PRINTF_DIR)
+%.o: %.c | $(PRINTF_LIB)
+	$(CC) $(FLAGS) -I/usr/local/include -I$(PRINTF_DIR) -I$(DIR) -I$(GNL) -c $< -o $@
 
-%.o: %.c
-	$(CC) $(FLAGS) -I$(MLX_DIR) -I$(PRINTF_DIR) -c $< -o $@
-
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(PRINTF_LIB)
 	$(CC) $(FLAGS) $(OBJS) $(MFLAGS) -o $(NAME)
-
-norm:
-	norminette -R CheckDefine
-
+	
 clean:
 	rm -f $(OBJS)
-	make clean -C $(MLX_DIR)
-	make clean -C $(PRINTF_DIR)
+	$(MAKE) clean -C $(PRINTF_DIR)
 
 fclean: clean
 	rm -f $(NAME)
-	make clean -C $(MLX_DIR)
-	make fclean -C $(PRINTF_DIR)
+	$(MAKE) fclean -C $(PRINTF_DIR)
 
 re: fclean all
 
-.PHONY: all clean fclean re norm
+.PHONY: all clean fclean re
+
+

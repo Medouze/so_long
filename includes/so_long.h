@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
+/*   By: mlavergn <mlavergn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:38:03 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/11/01 22:03:51 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/11/02 18:49:03 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../mlx/mlx.h"
+# include "mlx.h"
 # include "../gnl/get_next_line.h"
 # include "../ft_printf/ft_printf.h"
 

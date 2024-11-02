@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
+/*   By: mlavergn <mlavergn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 00:58:36 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/11/01 22:03:17 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/11/02 18:53:00 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	draw_text(t_game *game)
 	ft_strlcpy(count_collectibles, "Collectables left : ", text_len);
 	ft_strlcat(count_collectibles, swords, text_len);
 	mlx_string_put(game->window.mlx,
-		game->window.mlx_window, 20, 20, color, count_collectibles);
+		game->window.mlx_window, 10, 5, color, count_collectibles);
 	free(count_collectibles);
 	free(swords);
 }

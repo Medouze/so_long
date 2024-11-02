@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlavergn <mlavergn@s19.be>                 +#+  +:+       +#+        */
+/*   By: mlavergn <mlavergn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 02:56:25 by mlavergn          #+#    #+#             */
-/*   Updated: 2024/08/25 13:22:45 by mlavergn         ###   ########.fr       */
+/*   Updated: 2024/11/02 17:51:47 by mlavergn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	find_path(int y, int x, t_game *game)
 	}
 	path_collect(cp_map, y, x, &collectibles);
 	free_map(cp_map);
-	cp_map = NULL;
 	cp_map = copy_map(game);
 	if (!cp_map)
 	{
